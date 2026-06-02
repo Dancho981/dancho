@@ -1,0 +1,703 @@
+/* ============================================================
+   Volt — design tokens
+   ============================================================ */
+:root {
+  --grad-brand: linear-gradient(135deg, #6d5ef0 0%, #b04ee0 100%);
+  --grad-btn: linear-gradient(90deg, #6366f1 0%, #a855f7 100%);
+  --grad-welcome: linear-gradient(165deg, #6a5cf2 0%, #8b54e8 45%, #b450dd 100%);
+
+  --ink: #1a1a2e;
+  --ink-soft: #6b6b80;
+  --ink-faint: #a0a0b0;
+  --bg-screen: #f6f6f9;
+  --field-bg: #ececf3;
+  --field-border: #d9d9e6;
+  --accent: #7c5cf0;
+
+  --radius-screen: 30px;
+  --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+}
+
+body {
+  min-height: 100vh;
+  background: #e9e9f1 radial-gradient(120% 80% at 50% 0%, #f1eefb 0%, #e3e3ee 60%);
+  color: var(--ink);
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input {
+  font-family: inherit;
+}
+
+/* ============================================================
+   Stage + phone frame
+   ============================================================ */
+.stage {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  padding: 28px 16px;
+}
+
+.phone {
+  position: relative;
+  width: 340px;
+  height: 720px;
+  max-height: calc(100vh - 90px);
+  background: #fff;
+  border-radius: 44px;
+  padding: 9px;
+  box-shadow:
+    0 0 0 11px #1b1b22,
+    0 0 0 13px #2c2c35,
+    0 30px 70px -20px rgba(40, 30, 90, 0.45);
+}
+
+.phone-notch {
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 116px;
+  height: 30px;
+  background: #1b1b22;
+  border-radius: 0 0 18px 18px;
+  z-index: 30;
+}
+
+.phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  overflow: hidden;
+  background: var(--bg-screen);
+}
+
+.stage-hint {
+  margin: 0;
+  font-size: 13px;
+  color: #8b8ba0;
+  letter-spacing: 0.2px;
+}
+
+/* ============================================================
+   Screen layout + slide animation
+   ============================================================ */
+.screen-anim {
+  position: absolute;
+  inset: 0;
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-screen);
+}
+
+@keyframes slideFwd {
+  from { transform: translateX(38px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+@keyframes slideBack {
+  from { transform: translateX(-38px); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+.slide-fwd { animation: slideFwd 0.32s cubic-bezier(0.22, 1, 0.36, 1); }
+.slide-back { animation: slideBack 0.32s cubic-bezier(0.22, 1, 0.36, 1); }
+
+/* ============================================================
+   Status bar
+   ============================================================ */
+.status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 26px 4px;
+  height: 44px;
+  flex-shrink: 0;
+}
+.status-time {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.status-icons {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.status-bar--light .status-time {
+  color: #fff;
+}
+
+/* ============================================================
+   Top bar (back + progress)
+   ============================================================ */
+.top-bar {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 6px 22px 10px;
+  flex-shrink: 0;
+}
+.back-btn {
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.progress {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+.progress-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 99px;
+  background: #d6d6e2;
+  transition: all 0.25s ease;
+}
+.progress-dot--active {
+  background: var(--accent);
+}
+.progress-dot--current {
+  width: 22px;
+}
+
+/* ============================================================
+   Generic content area
+   ============================================================ */
+.screen-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 26px 22px;
+  overflow-y: auto;
+}
+.screen-footer {
+  padding: 0 14px 10px;
+  flex-shrink: 0;
+}
+.heading {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin: 4px 0 6px;
+  color: var(--ink);
+}
+.subheading {
+  font-size: 14.5px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin: 0 0 24px;
+}
+.subheading strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.spacer {
+  flex: 1;
+  min-height: 16px;
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  width: 100%;
+  height: 52px;
+  border-radius: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  display: grid;
+  place-items: center;
+  transition: transform 0.12s ease, opacity 0.2s ease, box-shadow 0.2s ease;
+}
+.btn:active {
+  transform: scale(0.975);
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn--gradient {
+  background: var(--grad-btn);
+  color: #fff;
+  box-shadow: 0 12px 24px -10px rgba(124, 92, 240, 0.7);
+}
+.btn--white {
+  background: #fff;
+  color: var(--accent);
+  box-shadow: 0 10px 26px -12px rgba(20, 10, 60, 0.5);
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+}
+
+/* ============================================================
+   Keypad
+   ============================================================ */
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px 10px;
+  margin-top: 12px;
+  padding: 0 6px;
+}
+.keypad-key {
+  height: 46px;
+  border-radius: 12px;
+  background: #fff;
+  font-size: 22px;
+  font-weight: 500;
+  color: var(--ink);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 1px 2px rgba(20, 10, 60, 0.06);
+  transition: background 0.12s ease, transform 0.1s ease;
+}
+.keypad-key:active {
+  background: #ededf5;
+  transform: scale(0.96);
+}
+.keypad-key--empty {
+  background: transparent;
+  box-shadow: none;
+}
+
+/* ============================================================
+   Welcome + ready (gradient) screens
+   ============================================================ */
+.screen--welcome,
+.screen--ready {
+  background: var(--grad-welcome);
+  color: #fff;
+  overflow: hidden;
+}
+.welcome-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 30px;
+  z-index: 2;
+}
+.welcome-logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(4px);
+  display: grid;
+  place-items: center;
+  margin-bottom: 22px;
+}
+.welcome-title {
+  font-size: 44px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  margin: 0 0 14px;
+}
+.welcome-tagline {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0 0 12px;
+}
+.welcome-sub {
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+  margin: 0;
+  max-width: 230px;
+}
+.welcome-actions {
+  padding: 0 24px 30px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.welcome-login {
+  height: 44px;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14.5px;
+  font-weight: 500;
+}
+.welcome-facet {
+  position: absolute;
+  right: -60px;
+  bottom: 120px;
+  width: 260px;
+  height: 260px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.16), transparent 70%);
+  transform: rotate(35deg);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Ready / first-ride screen */
+.ready-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 32px;
+  z-index: 2;
+}
+.ready-check {
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  display: grid;
+  place-items: center;
+  margin-bottom: 26px;
+  animation: pop 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes pop {
+  from { transform: scale(0.5); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.ready-title {
+  font-size: 27px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  margin: 0 0 12px;
+}
+.ready-sub {
+  font-size: 15px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+  margin: 0 0 30px;
+}
+.ready-stats {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  padding: 16px 26px;
+}
+.ready-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.ready-stat-num {
+  font-size: 20px;
+  font-weight: 800;
+}
+.ready-stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.8);
+}
+.ready-stat-divider {
+  width: 1px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.25);
+}
+.ready-actions {
+  padding: 0 24px 30px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ============================================================
+   Phone-number screen
+   ============================================================ */
+.phone-row {
+  display: flex;
+  gap: 10px;
+}
+.country-select {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  height: 52px;
+  padding: 0 14px;
+  border-radius: 13px;
+  background: var(--field-bg);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.flag {
+  font-size: 16px;
+}
+.phone-input {
+  flex: 1;
+  height: 52px;
+  border-radius: 13px;
+  background: #fff;
+  border: 1.5px solid var(--accent);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.placeholder {
+  color: var(--ink-faint);
+}
+.caret {
+  display: inline-block;
+  width: 2px;
+  height: 22px;
+  background: var(--accent);
+  margin-left: 2px;
+  animation: blink 1.1s step-end infinite;
+}
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* ============================================================
+   Verify screen
+   ============================================================ */
+.code-row {
+  display: flex;
+  gap: 9px;
+}
+.code-box {
+  flex: 1;
+  aspect-ratio: 1;
+  max-width: 46px;
+  border-radius: 13px;
+  background: var(--field-bg);
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  position: relative;
+}
+.code-box--active {
+  background: #fff;
+  border: 1.5px solid var(--accent);
+}
+.resend {
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.resend strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+.resend-btn {
+  color: var(--accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ============================================================
+   Profile screen
+   ============================================================ */
+.avatar-wrap {
+  position: relative;
+  width: 88px;
+  height: 88px;
+  margin: 8px auto 26px;
+}
+.avatar {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background:
+    repeating-linear-gradient(45deg, #e6e6f0, #e6e6f0 6px, #eeeef5 6px, #eeeef5 12px);
+}
+.avatar-add {
+  position: absolute;
+  right: -2px;
+  bottom: -2px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--grad-btn);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 10px -3px rgba(124, 92, 240, 0.7);
+  border: 3px solid var(--bg-screen);
+}
+.field-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin: 14px 0 7px;
+}
+.text-field {
+  width: 100%;
+  height: 50px;
+  border-radius: 13px;
+  background: #fff;
+  border: 1.5px solid var(--field-border);
+  padding: 0 16px;
+  font-size: 15.5px;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.text-field::placeholder {
+  color: var(--ink-faint);
+}
+.text-field:focus {
+  border-color: var(--accent);
+}
+
+/* ============================================================
+   Payment screen
+   ============================================================ */
+.card-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  border-radius: 13px;
+  background: #fff;
+  border: 1.5px solid var(--accent);
+  padding: 0 14px;
+  gap: 10px;
+}
+.card-brand {
+  font-size: 12px;
+  font-weight: 800;
+  font-style: italic;
+  color: #1a52c4;
+  letter-spacing: 0.5px;
+}
+.card-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 15.5px;
+  letter-spacing: 1px;
+  color: var(--ink);
+  background: transparent;
+}
+.card-input::placeholder {
+  color: var(--ink-faint);
+  letter-spacing: 1px;
+}
+.card-row {
+  display: flex;
+  gap: 12px;
+}
+.card-col {
+  flex: 1;
+}
+.secure-note {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 18px 0 0;
+}
+
+/* ============================================================
+   Location screen
+   ============================================================ */
+.map-preview {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  border-radius: 18px;
+  margin: 4px 0 26px;
+  background:
+    repeating-linear-gradient(45deg, #e9e9f2, #e9e9f2 10px, #f0f0f7 10px, #f0f0f7 20px);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+}
+.map-label {
+  font-size: 12px;
+  color: var(--ink-faint);
+}
+.pin {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50% 50% 50% 0;
+  background: var(--accent);
+  transform: rotate(-45deg);
+  box-shadow: 0 3px 6px -1px rgba(124, 92, 240, 0.6);
+}
+.pin::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background: #fff;
+  border-radius: 50%;
+}
+.pin-1 { top: 42px; left: 70px; }
+.pin-2 { top: 70px; right: 56px; background: #b04ee0; }
+.pin-3 { bottom: 48px; left: 110px; }
+.ghost-link {
+  height: 46px;
+  width: 100%;
+  color: var(--ink-soft);
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   Responsive: shrink the device on small viewports
+   ============================================================ */
+@media (max-width: 420px) {
+  .phone {
+    width: 100vw;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  .phone-screen {
+    border-radius: 0;
+  }
+  .phone-notch {
+    display: none;
+  }
+  .stage {
+    padding: 0;
+    gap: 0;
+  }
+  .stage-hint {
+    display: none;
+  }
+}
