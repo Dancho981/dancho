@@ -1,7 +1,7 @@
 import { useReveal } from '../hooks/useReveal'
 import { useCountUp } from '../hooks/useCountUp'
 import { fmtRatio } from '../format'
-import { ObjectSphere } from './ObjectSphere'
+import { ObjectArt } from './ObjectArt'
 import { SUN, OBJECTS, type CosmicObject } from '../data/objects'
 
 const STAR_IDS = new Set(['sun', 'sirius', 'betelgeuse', 'uyscuti', 'stephenson'])
@@ -41,7 +41,7 @@ export function ScaleSection({
     >
       <div className="chapter-visual">
         <div className="stage">
-          <ObjectSphere obj={obj} size={BIG_SPHERE} />
+          <ObjectArt obj={obj} size={BIG_SPHERE} />
 
           {reference && (
             <div className="ref-dot-wrap">

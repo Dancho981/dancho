@@ -3,7 +3,7 @@ import { OBJECTS, byId } from '../data/objects'
 import { fmtRatio } from '../format'
 import { useReveal } from '../hooks/useReveal'
 import { useCountUp } from '../hooks/useCountUp'
-import { ObjectSphere } from './ObjectSphere'
+import { ObjectArt } from './ObjectArt'
 
 const BIG = 180 // px for the larger object in the comparison stage
 
@@ -75,19 +75,23 @@ export function ComparisonExplorer() {
 
         <div className="explorer-stage" key={`${aId}-${bId}`}>
           <div className="explorer-obj">
-            <ObjectSphere obj={bigger} size={BIG} spin={false} />
+            <ObjectArt obj={bigger} size={BIG} spin={false} />
             <span className="explorer-tag">{bigger.name}</span>
           </div>
           <div className="explorer-obj">
-            <span
-              className="explorer-small"
-              style={{
-                width: smallSize,
-                height: smallSize,
-                background: `radial-gradient(circle at 32% 28%, ${smaller.colors[0]}, ${smaller.colors[1]} 50%, ${smaller.colors[2]})`,
-                boxShadow: `0 0 ${tiny ? 8 : smallSize * 0.4}px ${smaller.colors[1]}`,
-              }}
-            />
+            {smallSize >= 34 ? (
+              <ObjectArt obj={smaller} size={smallSize} spin={false} />
+            ) : (
+              <span
+                className="explorer-small"
+                style={{
+                  width: smallSize,
+                  height: smallSize,
+                  background: `radial-gradient(circle at 32% 28%, ${smaller.colors[0]}, ${smaller.colors[1]} 50%, ${smaller.colors[2]})`,
+                  boxShadow: `0 0 ${tiny ? 8 : smallSize * 0.4}px ${smaller.colors[1]}`,
+                }}
+              />
+            )}
             <span className="explorer-tag">
               {smaller.name}
               {tiny && ' (winzig!)'}
